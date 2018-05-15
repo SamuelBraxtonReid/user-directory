@@ -2,20 +2,7 @@ const headerButton = document.querySelector("#changeHeader");
 const header1 = document.querySelector("#first");
 const header2 = document.querySelector("#second");
 const input = document.querySelector("#headerInput");
-const submitButton = document.querySelector("#submit");
-
-console.log(input);
-
-function changeText(ev) {
-  const paragraph = document.querySelector("p.greeting");
-  if (ev.target.textContent === "Fear Me") {
-    ev.target.textContent = "Love Me";
-    paragraph.textContent = "I am feared";
-  } else if (ev.target.textContent === "Love Me") {
-    ev.target.textContent = "Fear Me";
-    paragraph.textContent = "I am loved";
-  } 
-}
+const form = document.querySelector("#userForm");
 
 function changeHeader() {
   const headerText = header2.textContent;
@@ -26,11 +13,12 @@ function changeHeader() {
   }
 }
 
-function setHeader(ev) {
+const setHeader = function(ev) {
+  ev.preventDefault();
   header1.textContent = input.value;
   input.value = "";
 }
 
-submitButton.addEventListener("click", setHeader);
+form.addEventListener("submit", setHeader);
 
 headerButton.addEventListener("click", changeHeader);
