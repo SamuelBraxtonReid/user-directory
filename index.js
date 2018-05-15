@@ -17,9 +17,19 @@ const setHeader = function(ev) {
   ev.preventDefault();
   const name = document.querySelector("#nameInput");
   const age = document.querySelector("#ageInput");
-  header1.textContent = name.value;
+  const color = document.querySelector("#colorInput");
   const users = document.querySelector("#users");
-  users.innerHTML += `<p>${name.value}, ${age.value}</p>`;
+  header1.textContent = name.value;
+  const element = document.createElement("ul");
+  const nameItem = document.createElement("li");
+  nameItem.textContent = `Name: ${name.value}`;
+  const ageItem = document.createElement("li");
+  ageItem.textContent = `Age: ${age.value}`;
+  element.appendChild(nameItem);
+  element.appendChild(ageItem);
+  element.style.background = color.value;
+  element.style.color = "#000000";
+  users.appendChild(element);
   name.value = "";
   age.value = "";
 }
