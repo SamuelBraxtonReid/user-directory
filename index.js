@@ -15,10 +15,13 @@ function changeHeader() {
 
 const setHeader = function(ev) {
   ev.preventDefault();
-  header1.textContent = input.value;
+  const name = document.querySelector("#nameInput");
+  const age = document.querySelector("#ageInput");
+  header1.textContent = name.value;
   const users = document.querySelector("#users");
-  users.innerHTML += "<p>" + input.value + "</p>";
-  input.value = "";
+  users.innerHTML += `<p>${name.value}, ${age.value}</p>`;
+  name.value = "";
+  age.value = "";
 }
 
 form.addEventListener("submit", setHeader);
