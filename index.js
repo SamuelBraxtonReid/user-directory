@@ -16,6 +16,8 @@ function changeHeader() {
 const setHeader = function(ev) {
   ev.preventDefault();
   header1.textContent = input.value;
+  const users = document.querySelector("#users");
+  users.innerHTML += "<p>" + input.value + "</p>";
   input.value = "";
 }
 
