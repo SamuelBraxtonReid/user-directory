@@ -1,39 +1,48 @@
-const headerButton = document.querySelector("#changeHeader");
-const header1 = document.querySelector("#first");
-const header2 = document.querySelector("#second");
-const input = document.querySelector("#headerInput");
-const form = document.querySelector("#userForm");
-
-function changeHeader() {
-  const headerText = header2.textContent;
-  if (headerText === "User Directory") {
-    header2.textContent = "TEST";
-  } else {
-    header2.textContent = "User Directory";
+function renderList(elements) {
+  const list = document.createElement("ul");
+  for (let i = 0; i < elements.length; i++) {
+    list.appendChild(renderListItem(elements[i]));
   }
+  return list;
 }
 
-const setHeader = function(ev) {
+function renderListItem(text) {
+  const item = document.createElement("li");
+  item.textContent = text;
+  return item;
+}
+
+function renderColor(color) {
+  const colorDiv = document.createElement("div");
+  colorDiv.style.background = color;
+  colorDiv.style.width = "6rem";
+  colorDiv.style.height = "3rem";
+  return colorDiv;
+}
+
+const handleSubmit = function(ev) {
+
   ev.preventDefault();
-  const name = document.querySelector("#nameInput");
-  const age = document.querySelector("#ageInput");
-  const color = document.querySelector("#colorInput");
-  const users = document.querySelector("#users");
-  header1.textContent = name.value;
-  const element = document.createElement("ul");
-  const nameItem = document.createElement("li");
-  nameItem.textContent = `Name: ${name.value}`;
-  const ageItem = document.createElement("li");
-  ageItem.textContent = `Age: ${age.value}`;
-  element.appendChild(nameItem);
-  element.appendChild(ageItem);
-  element.style.background = color.value;
-  element.style.color = "#000000";
-  users.appendChild(element);
+
+  const fe = document.querySelector("#userForm").elements;
+
+  const name = fe.nameInput;
+  const age = fe.ageInput;
+  const color = fe.colorInput;
+
+  const elements = [];
+  elements.push(`Name: ${name.value}`);
+  elements.push(`Age: ${age.value}`);
+  
+  const list = renderList(elements);
+
+  list.appendChild(renderColor(color.value));
+
+  document.querySelector("#users").appendChild(list);
+  
   name.value = "";
   age.value = "";
-}
 
-form.addEventListener("submit", setHeader);
+};
 
-headerButton.addEventListener("click", changeHeader);
+document.querySelector("#userForm").addEventListener("submit", handleSubmit);
