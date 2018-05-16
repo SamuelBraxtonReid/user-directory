@@ -1,7 +1,11 @@
 function renderList(elements) {
   const list = document.createElement("ul");
   for (let i = 0; i < elements.length; i++) {
-    list.appendChild(renderListItem(elements[i]));
+    if (elements[i][1] === "text") {
+      list.appendChild(renderListItem(elements[i][0]));
+    } else if (elements[i][1] === "color") {
+      list.appendChild(renderColor(elements[i][0]));
+    }
   }
   return list;
 }
@@ -31,12 +35,12 @@ const handleSubmit = function(ev) {
   const color = fe.colorInput;
 
   const elements = [];
-  elements.push(`Name: ${name.value}`);
-  elements.push(`Age: ${age.value}`);
-  
-  const list = renderList(elements);
 
-  list.appendChild(renderColor(color.value));
+  elements.push([`Name: ${name.value}`,"text"]);
+  elements.push([`Age: ${age.value}`,"text"]);
+  elements.push([color.value,"color"]);
+
+  const list = renderList(elements);
 
   document.querySelector("#users").appendChild(list);
   
