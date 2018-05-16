@@ -1,15 +1,5 @@
-#first {
-  color: yellow;
-  background: blue;
-}
-
-#second {
-  color: magenta;
-  background: green;
-}
-
 body {
-  color: red;
-  font-family: "Comic Sans MS", "Comic Sans", cursive;
-  background: cyan;
+  color: white;
+  font-family: Verdana, Geneva, sans-serif;
+  background: grey;
 }
